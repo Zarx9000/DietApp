@@ -21,4 +21,5 @@ public class OpeningActivity extends AppCompatActivity {
             return insets;
         });
     }
+
 }
