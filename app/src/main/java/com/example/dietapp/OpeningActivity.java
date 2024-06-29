@@ -1,5 +1,6 @@
 package com.example.dietapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -31,7 +32,9 @@ public class OpeningActivity extends AppCompatActivity {
         // checks for if the preference variables have been instantiated or not
         System.out.println("heck ye");
         if (getHeightFromPreference() == -1 || getWeightFromPreference() == -1 || getNameFromPreference().equals("empty")){
-            // put in methods to fill in the preference variables
+            // if true goes to new activity to enter preference variables
+            Intent intent = new Intent(this, EnterDataActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -49,30 +52,5 @@ public class OpeningActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
         // get the weight variable from the preference (is "empty" on null, so when not instantiated yet)
         return sharedPreferences.getString(KEY_MY_NAME, "empty");
-    }
-
-    public void setWeightToPreference(int weight){
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        //store the weight integer
-        editor.putInt(KEY_MY_WEIGHT, weight);
-        editor.apply();
-    }
-    public void setHeightToPreference(int height){
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        // store the height integer
-        editor.putInt(KEY_MY_HEIGHT, height);
-        editor.apply();
-    }
-    public void setNameToPreference(String name){
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        // store the name String
-        editor.putString(KEY_MY_NAME, name);
-        editor.apply();
     }
 }
