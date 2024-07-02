@@ -12,7 +12,9 @@ import androidx.core.view.WindowInsetsCompat;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class EnterDataActivity extends AppCompatActivity {
@@ -21,10 +23,12 @@ public class EnterDataActivity extends AppCompatActivity {
     private static final String KEY_MY_WEIGHT = "myWeight";
     private static final String KEY_MY_HEIGHT = "myHeight";
     private static final String KEY_MY_NAME = "myName";
+    private static final String KEY_MY_AGE = "myAge";
 
     private EditText enterName;
     private EditText enterWeight;
     private EditText enterHeight;
+    private EditText enterAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,13 @@ public class EnterDataActivity extends AppCompatActivity {
         enterHeight = findViewById(R.id.enterHeight);
         enterWeight = findViewById(R.id.enterWeight);
         enterName = findViewById(R.id.enterName);
+        enterAge = findViewById(R.id.enterAge);
+        Spinner activityDropDown = findViewById(R.id.activityDropDown);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.activity_drop_down_items, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        activityDropDown.setAdapter(adapter);
     }
 
     public void setWeightToPreference(int weight){
@@ -67,6 +78,14 @@ public class EnterDataActivity extends AppCompatActivity {
         editor.putString(KEY_MY_NAME, name);
         editor.apply();
     }
+    public void setAgeToPreference(int age){
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // store the height integer
+        editor.putInt(KEY_MY_AGE, age);
+        editor.apply();
+    }
 
     // when the button is pressed it will check if all the fields are filled in
     public void onButtonClicked(View caller){
@@ -75,6 +94,7 @@ public class EnterDataActivity extends AppCompatActivity {
             setWeightToPreference(Integer.parseInt(enterWeight.getText().toString()));
             setHeightToPreference(Integer.parseInt(enterHeight.getText().toString()));
             setNameToPreference(enterName.getText().toString());
+            setAgeToPreference(Integer.parseInt(enterAge.getText().toString()));
 
             // go back to the opening activity
             Intent intent = new Intent(this, OpeningActivity.class);
@@ -88,6 +108,6 @@ public class EnterDataActivity extends AppCompatActivity {
     // checks if all of the EditTexts are filled
     public boolean checkIfAllFilled(){
         // returns a true if all fields are filled in
-        return !enterName.getText().toString().isEmpty() && !enterWeight.getText().toString().isEmpty() && !enterHeight.getText().toString().isEmpty();
+        return !enterName.getText().toString().isEmpty() && !enterWeight.getText().toString().isEmpty() && !enterHeight.getText().toString().isEmpty() && !enterAge.getText().toString().isEmpty();
     }
 }

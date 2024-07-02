@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">DietApp</string>
+    <string name="first_things_first">First things first</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="height_in_cm">Height in cm</string>
+    <string name="weight_in_kg">Weight in kg</string>
+    <string name="enter_your_age">Enter your age</string>
+    <string name="submit">Submit</string>
+    <string-array name="activity_drop_down_items">
+        <item>little or no exercise</item>
+        <item>light exercise/sports 1–3 days/week</item>
+        <item>moderate exercise/sports 3–5 days/week</item>
+        <item>hard exercise/sports 6–7 days a week</item>
+        <item>very hard exercise/sports &amp; a physical job</item>
+    </string-array>
 </resources>

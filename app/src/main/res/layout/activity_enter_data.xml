@@ -13,44 +13,90 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="First things first"
-        android:textSize="35dp"
+        android:text="@string/first_things_first"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/enterName"
-        android:layout_width="250dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="180dp"
-        android:gravity="center"
-        android:hint="Enter your name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/enterHeight"
-        android:layout_width="250dp"
-        android:layout_height="65dp"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="275dp"
         android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:hint="Height in cm"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterName" />
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
-    <EditText
-        android:id="@+id/enterWeight"
-        android:layout_width="250dp"
-        android:layout_height="65dp"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/enterName"
+                android:inputType="textPersonName"
+                android:layout_width="250dp"
+                android:layout_height="65dp"
+                android:gravity="center"
+                android:hint="@string/enter_your_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/enterHeight"
+                android:inputType="number"
+                android:layout_width="250dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:hint="@string/height_in_cm"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enterName" />
+
+            <EditText
+                android:id="@+id/enterWeight"
+                android:inputType="number"
+                android:layout_width="250dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:hint="@string/weight_in_kg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enterHeight" />
+
+            <EditText
+                android:id="@+id/enterAge"
+                android:inputType="number"
+                android:layout_width="250dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:hint="@string/enter_your_age"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enterWeight" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Spinner
+        android:id="@+id/activityDropDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
         android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:hint="Weight in kg"
+        android:layout_centerHorizontal="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterHeight" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+
 
     <Button
         android:id="@+id/submitButton"
@@ -59,7 +105,7 @@
         android:layout_marginBottom="100dp"
         android:background="@drawable/button_background"
         android:onClick="onButtonClicked"
-        android:text="Submit"
+        android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

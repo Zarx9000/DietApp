@@ -18,6 +18,7 @@ public class OpeningActivity extends AppCompatActivity {
     private static final String KEY_MY_WEIGHT = "myWeight";
     private static final String KEY_MY_HEIGHT = "myHeight";
     private static final String KEY_MY_NAME = "myName";
+    private static final String KEY_MY_AGE = "myAge";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +30,10 @@ public class OpeningActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        clearPreferences();
         // checks for if the preference variables have been instantiated or not
-        System.out.println("heck ye");
+        // System.out.println("heck ye");
         if (getHeightFromPreference() == -1 || getWeightFromPreference() == -1 || getNameFromPreference().equals("empty")){
             // if true goes to new activity to enter preference variables
             Intent intent = new Intent(this, EnterDataActivity.class);
@@ -52,5 +55,19 @@ public class OpeningActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
         // get the weight variable from the preference (is "empty" on null, so when not instantiated yet)
         return sharedPreferences.getString(KEY_MY_NAME, "empty");
+    }
+    public int getAgeFromPreference(){
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        // get the age variable from the preference (is -1 on null, so when not instantiated yet)
+        return sharedPreferences.getInt(KEY_MY_AGE, -1);
+    }
+
+    // solely for testing purposes
+    public void clearPreferences(){
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.clear();
+        editor.apply();
     }
 }
